@@ -9,7 +9,7 @@ exports.createRoom = async (req, res) => {
     return res.status(400).json({ errors: errors.array() });
   }
 
-  const { title, description, amenities, price, maxPeople } = req.body;
+  const { title, description, amenities, price, maxPeople, mainImageIndex } = req.body;
   const images = req.files ? req.files.map(file => file.path) : [];
 
   try {
@@ -19,7 +19,8 @@ exports.createRoom = async (req, res) => {
       amenities,
       price,
       maxPeople,
-      images
+      images,
+      mainImageIndex: mainImageIndex || 0 // Si no se especifica, usar la primera imagen
     });
 
     await room.save();
@@ -34,7 +35,13 @@ exports.createRoom = async (req, res) => {
 exports.getRooms = async (req, res) => {
   try {
     const rooms = await Room.find();
-    res.json(rooms);
+    const roomsWithImageUrls = rooms.map(room => ({
+      ...room.toObject(),
+      imageUrl: room.images && room.images.length > 0 
+                ? `/uploads/${room.images[room.mainImageIndex || 0]}` // Obtener la imagen de portada
+                : null // Imagen por defecto o null si no hay imágenes
+    }));
+    res.json(roomsWithImageUrls);
   } catch (error) {
     console.error(error.message);
     res.status(500).send('Error en el servidor');
@@ -48,7 +55,13 @@ exports.getRoomById = async (req, res) => {
     if (!room) {
       return res.status(404).json({ msg: 'Habitación no encontrada' });
     }
-    res.json(room);
+    const roomWithImageUrl = {
+      ...room.toObject(),
+      imageUrl: room.images && room.images.length > 0 
+                ? `/uploads/${room.images[room.mainImageIndex || 0]}` // Imagen de portada
+                : null
+    };
+    res.json(roomWithImageUrl);
   } catch (error) {
     console.error(error.message);
     res.status(500).send('Error en el servidor');
@@ -62,7 +75,7 @@ exports.updateRoom = async (req, res) => {
     return res.status(400).json({ errors: errors.array() });
   }
 
-  const { title, description, amenities, price, maxPeople } = req.body;
+  const { title, description, amenities, price, maxPeople, mainImageIndex } = req.body;
   const images = req.files ? req.files.map(file => file.path) : [];
 
   try {
@@ -77,6 +90,7 @@ exports.updateRoom = async (req, res) => {
     room.amenities = amenities || room.amenities;
     room.price = price || room.price;
     room.maxPeople = maxPeople || room.maxPeople;
+    room.mainImageIndex = mainImageIndex !== undefined ? mainImageIndex : room.mainImageIndex;
     if (images.length > 0) {
       room.images = images;
     }
