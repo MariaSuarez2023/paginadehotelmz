@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import logo from '../assets/logohotelmz.png'; 
 
 const Header = ({ isAuthenticated, onLogout }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation(); // Obtiene la ruta actual
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -13,6 +14,18 @@ const Header = ({ isAuthenticated, onLogout }) => {
   const handleLogout = () => {
     onLogout();
     navigate('/');
+  };
+
+  const handleNavClick = (anchor) => {
+    if (location.pathname !== '/') {
+      navigate('/'); // Navega a la página de inicio si no estamos en ella
+      setTimeout(() => {
+        document.getElementById(anchor)?.scrollIntoView({ behavior: 'smooth' });
+      }, 100); // Espera un momento para que la navegación a la página de inicio complete
+    } else {
+      document.getElementById(anchor)?.scrollIntoView({ behavior: 'smooth' });
+    }
+    setIsMenuOpen(false); // Cierra el menú en dispositivos móviles
   };
 
   return (
@@ -25,12 +38,24 @@ const Header = ({ isAuthenticated, onLogout }) => {
         </div>
         
         <nav className="hidden md:flex space-x-8">
-          <Link to="/#about-us" className="relative hover:text-primary menu-link">Nosotros</Link>
-          <Link to="/#activities" className="relative hover:text-primary menu-link">Actividades</Link>
-          <Link to="/#testimonials" className="relative hover:text-primary menu-link">Testimonios</Link>
-          <Link to="/#pricing" className="relative hover:text-primary menu-link">Precios</Link>
-          <Link to="/#blog" className="relative hover:text-primary menu-link">Blog</Link>
-          <Link to="/#contact" className="relative hover:text-primary menu-link">Contacto</Link>
+          <button onClick={() => handleNavClick('about-us')} className="relative hover:text-secondary menu-link">
+            Nosotros
+          </button>
+          <button onClick={() => handleNavClick('activities')} className="relative hover:text-secondary menu-link">
+            Actividades
+          </button>
+          <button onClick={() => handleNavClick('testimonials')} className="relative hover:text-secondary menu-link">
+            Testimonios
+          </button>
+          <button onClick={() => handleNavClick('pricing')} className="relative hover:text-secondary menu-link">
+            Precios
+          </button>
+          <button onClick={() => handleNavClick('blog')} className="relative hover:text-secondary menu-link">
+            Blog
+          </button>
+          <button onClick={() => handleNavClick('contact')} className="relative hover:text-secondary menu-link">
+            Contacto
+          </button>
           <Link to="/rooms" className="relative hover:text-primary menu-link">Habitaciones</Link>
           {isAuthenticated ? (
             <>
@@ -56,20 +81,64 @@ const Header = ({ isAuthenticated, onLogout }) => {
       </div>
 
       <div className={`${isMenuOpen ? 'block' : 'hidden'} md:hidden bg-primary text-white`}>
-        <Link to="/#about-us" className="block py-2 px-4 text-sm hover:bg-secondary hover:text-white" onClick={toggleMenu}>Nosotros</Link>
-        <Link to="/#activities" className="block py-2 px-4 text-sm hover:bg-secondary hover:text-white" onClick={toggleMenu}>Actividades</Link>
-        <Link to="/#testimonials" className="block py-2 px-4 text-sm hover:bg-secondary hover:text-white" onClick={toggleMenu}>Testimonios</Link>
-        <Link to="/#pricing" className="block py-2 px-4 text-sm hover:bg-secondary hover:text-white" onClick={toggleMenu}>Precios</Link>
-        <Link to="/#blog" className="block py-2 px-4 text-sm hover:bg-secondary hover:text-white" onClick={toggleMenu}>Blog</Link>
-        <Link to="/#contact" className="block py-2 px-4 text-sm hover:bg-secondary hover:text-white" onClick={toggleMenu}>Contacto</Link>
-        <Link to="/rooms" className="block py-2 px-4 text-sm hover:bg-secondary hover:text-white" onClick={toggleMenu}>Habitaciones</Link>
+        <button
+          onClick={() => handleNavClick('about-us')}
+          className="block py-2 px-4 text-sm hover:bg-secondary hover:text-white"
+        >
+          Nosotros
+        </button>
+        <button
+          onClick={() => handleNavClick('activities')}
+          className="block py-2 px-4 text-sm hover:bg-secondary hover:text-white"
+        >
+          Actividades
+        </button>
+        <button
+          onClick={() => handleNavClick('testimonials')}
+          className="block py-2 px-4 text-sm hover:bg-secondary hover:text-white"
+        >
+          Testimonios
+        </button>
+        <button
+          onClick={() => handleNavClick('pricing')}
+          className="block py-2 px-4 text-sm hover:bg-secondary hover:text-white"
+        >
+          Precios
+        </button>
+        <button
+          onClick={() => handleNavClick('blog')}
+          className="block py-2 px-4 text-sm hover:bg-secondary hover:text-white"
+        >
+          Blog
+        </button>
+        <button
+          onClick={() => handleNavClick('contact')}
+          className="block py-2 px-4 text-sm hover:bg-secondary hover:text-white"
+        >
+          Contacto
+        </button>
+        <Link to="/rooms" className="block py-2 px-4 text-sm hover:bg-secondary hover:text-white" onClick={toggleMenu}>
+          Habitaciones
+        </Link>
         {isAuthenticated ? (
           <>
-            <Link to="/admin/rooms" className="block py-2 px-4 text-sm hover:bg-secondary hover:text-white" onClick={toggleMenu}>Admin</Link>
-            <button onClick={() => { handleLogout(); toggleMenu(); }} className="block py-2 px-4 text-sm hover:bg-secondary hover:text-white">Cerrar Sesión</button>
+            <Link to="/admin/rooms" className="block py-2 px-4 text-sm hover:bg-secondary hover:text-white" onClick={toggleMenu}>
+              Admin
+            </Link>
+            <button
+              onClick={() => {
+                handleLogout();
+                toggleMenu();
+              }}
+              className="block py-2 px-4 text-sm hover:bg-secondary hover:text-white"
+            >
+              Cerrar Sesión
+            </button>
           </>
         ) : (
-          <Link to="/login" className="block py-2 px-4 text-sm hover:bg-secondary hover:text-white" onClick={toggleMenu}>Iniciar Sesión</Link>
+          <Link to="/login" className="block py-2 px-4 text-sm hover:bg-secondary hover:text-white" onClick={toggleMenu}>
+            Iniciar Sesión
+          </Link>
         )}
       </div>
     </header>
