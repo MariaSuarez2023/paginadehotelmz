@@ -2,9 +2,9 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSwimmer, faDumbbell, faMedal } from '@fortawesome/free-solid-svg-icons';
-import sergiofoto from '../assets/fotosergio.jpg'
-import luisfoto from '../assets/luisfoto.jpg'
+import { faConciergeBell, faBed, faSpa } from '@fortawesome/free-solid-svg-icons';
+import managerPhoto from '../assets/maria3.jpg';
+import chefPhoto from '../assets/donpollo.jpg';
 
 const AboutUs = () => {
   const [refTitle, inViewTitle] = useInView({ triggerOnce: true, threshold: 0.2 });
@@ -16,32 +16,28 @@ const AboutUs = () => {
   const [refTeam2, inViewTeam2] = useInView({ triggerOnce: true, threshold: 0.2 });
 
   return (
-    <section id="about-us" className="py-16 bg-white text-gray-800">
+    <section id="about-us" className="py-16 bg-gray-100 text-gray-800">
       <div className="container mx-auto px-4 text-center">
         {/* Título */}
         <motion.h2
           ref={refTitle}
-          className="text-4xl md:text-5xl font-bold mb-8 relative inline-block"
+          className="text-4xl md:text-5xl font-bold mb-8 text-[#c49c7c]"
           initial={{ opacity: 0, y: -50 }}
           animate={inViewTitle ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1 }}
         >
-          Sobre Nosotros
-          {/* Subrayado con olas */}
-          <div className="absolute left-0 bottom-0 w-full h-2">
-            <div className="wave" style={{ animation: 'wave 6s linear infinite' }}></div>
-          </div>
+          Sobre HotelMZ
         </motion.h2>
 
         {/* Subtítulo */}
         <motion.p
           ref={refSubtitle}
-          className="text-lg md:text-xl mb-12"
+          className="text-lg md:text-xl mb-12 text-[#c49c7c]"
           initial={{ opacity: 0, y: 50 }}
           animate={inViewSubtitle ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1, delay: 0.3 }}
         >
-          Descubre quiénes somos y qué hacemos mejor en Aguagym, el principal destino de fitness acuático.
+          Experiencia de lujo y comodidad en cada estancia
         </motion.p>
 
         {/* Misión, Visión y Valores */}
@@ -49,45 +45,48 @@ const AboutUs = () => {
           {/* Misión */}
           <motion.div
             ref={refMission}
-            className="md:w-1/3 mb-8 md:mb-0 bg-[#58ade1] text-white rounded-lg shadow-lg p-6"
+            className="md:w-1/3 mb-8 md:mb-0 bg-[#c49c7c] text-white rounded-lg shadow-lg p-6"
             initial={{ opacity: 0, x: -50 }}
             animate={inViewMission ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 1, delay: 0.6 }}
           >
-            <FontAwesomeIcon icon={faSwimmer} className="text-6xl text-yellow-400 mb-4" />
-            <h3 className="text-2xl font-semibold mb-4">Nuestra misión</h3>
+            <FontAwesomeIcon icon={faConciergeBell} className="text-6xl text-white-500 mb-4" />
+            <h3 className="text-2xl font-semibold mb-4">Nuestra Misión</h3>
             <p className="text-base">
-              En Aguagym, nuestra misión es promover la salud y el bienestar a través de programas de entrenamiento acuático de alta calidad. Nos esforzamos por proporcionar un ambiente seguro, inclusivo e inspirador para que todos puedan alcanzar sus objetivos de fitness.
+              En HotelMZ, nuestra misión es ofrecer una experiencia inolvidable a nuestros huéspedes, 
+              donde el lujo y el confort se combinan con un servicio excepcional y personalizado.
             </p>
           </motion.div>
 
           {/* Visión */}
           <motion.div
             ref={refVision}
-            className="md:w-1/3 mb-8 md:mb-0 bg-[#58ade1] text-white rounded-lg shadow-lg p-6"
+            className="md:w-1/3 mb-8 md:mb-0 bg-[#c49c7c] text-white rounded-lg shadow-lg p-6"
             initial={{ opacity: 0, x: 50 }}
             animate={inViewVision ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 1, delay: 0.9 }}
           >
-            <FontAwesomeIcon icon={faDumbbell} className="text-6xl text-yellow-400 mb-4" />
-            <h3 className="text-2xl font-semibold mb-4">Nuestra visión</h3>
+            <FontAwesomeIcon icon={faBed} className="text-6xl text-white-500 mb-4" />
+            <h3 className="text-2xl font-semibold mb-4">Nuestra Visión</h3>
             <p className="text-base">
-              Imaginamos una comunidad en la que todo el mundo tenga acceso a un entrenamiento físico de alta calidad, centrado en los beneficios de los ejercicios acuáticos. Nuestra visión es convertirnos en el centro de fitness acuático líder de la región, reconocido por su excelencia e innovación.
+              Aspiramos a ser reconocidos como el hotel líder en la región, ofreciendo no solo un lugar 
+              donde alojarse, sino un refugio de tranquilidad y lujo.
             </p>
           </motion.div>
 
           {/* Valores */}
           <motion.div
             ref={refValues}
-            className="md:w-1/3 bg-[#58ade1] text-white rounded-lg shadow-lg p-6"
+            className="md:w-1/3 bg-[#c49c7c] text-white rounded-lg shadow-lg p-6"
             initial={{ opacity: 0, x: 50 }}
             animate={inViewValues ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 1, delay: 1.2 }}
           >
-            <FontAwesomeIcon icon={faMedal} className="text-6xl text-yellow-400 mb-4" />
-            <h3 className="text-2xl font-semibold mb-4">Nuestros valores</h3>
+            <FontAwesomeIcon icon={faSpa} className="text-6xl text-white-500 mb-4" />
+            <h3 className="text-2xl font-semibold mb-4">Nuestros Valores</h3>
             <p className="text-base">
-              Valoramos la integridad, la dedicación y la excelencia. Nuestro equipo se compromete a ayudarle a conseguir lo mejor de sí mismo, tanto dentro como fuera del agua. Creemos en la mejora continua y en el fomento de un entorno alentador y de apoyo.
+              Valoramos la hospitalidad, la excelencia y el respeto. En HotelMZ, cada detalle importa, y 
+              trabajamos para superar las expectativas de nuestros huéspedes.
             </p>
           </motion.div>
         </div>
@@ -97,38 +96,38 @@ const AboutUs = () => {
           {/* Miembro del Equipo 1 */}
           <motion.div
             ref={refTeam1}
-            className="md:w-1/2 mb-8 md:mb-0 bg-[#58ade1] text-white rounded-lg shadow-lg p-6"
+            className="md:w-1/2 mb-8 md:mb-0 bg-[#c49c7c] text-white rounded-lg shadow-lg p-6"
             initial={{ opacity: 0, y: 50 }}
             animate={inViewTeam1 ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, delay: 1.5 }}
           >
             <img
-              src={sergiofoto}
-              alt="Team Member 1"
-              className="rounded-full w-32 h-32 mb-4 mx-auto"
+              src={managerPhoto}
+              alt="Gerente"
+              className="rounded-full w-32 h-45 mb-4 mx-auto"
             />
-            <h3 className="text-xl font-semibold mb-2 text-center">Sergio González</h3>
+            <h3 className="text-xl font-semibold mb-2 text-center">María Suarez</h3>
             <p className="text-center text-base">
-              Fundador de Aguagym, - Sergio se especializa en entrenamientos acuáticos de alta intensidad, garantizando que cada miembro obtenga lo mejor de sus sesiones de entrenamiento.
+              Gerente General - María lidera nuestro equipo con más de 15 años de experiencia en la industria de la hospitalidad, asegurando la excelencia en cada detalle.
             </p>
           </motion.div>
 
           {/* Miembro del Equipo 2 */}
           <motion.div
             ref={refTeam2}
-            className="md:w-1/2 bg-[#58ade1] text-white rounded-lg shadow-lg p-6"
+            className="md:w-1/2 bg-[#c49c7c] text-white rounded-lg shadow-lg p-6"
             initial={{ opacity: 0, y: 50 }}
             animate={inViewTeam2 ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, delay: 1.8 }}
           >
             <img
-              src={luisfoto}
-              alt="Team Member 2"
+              src={chefPhoto}
+              alt="Chef"
               className="rounded-full w-32 h-32 mb-4 mx-auto"
             />
-            <h3 className="text-xl font-semibold mb-2 text-center">Luis Martinez</h3>
+            <h3 className="text-xl font-semibold mb-2 text-center">Agustín Calderón</h3>
             <p className="text-center text-base">
-              Experto en Fitness Acuático - Luis tiene más de 10 años de experiencia en fitness acuático, aportando una gran riqueza de conocimientos y experiencia a nuestro equipo.
+              Chef Ejecutivo - Con una pasión por la gastronomía, Agustín Calderón crea experiencias culinarias inolvidables, combinando sabores locales e internacionales.
             </p>
           </motion.div>
         </div>

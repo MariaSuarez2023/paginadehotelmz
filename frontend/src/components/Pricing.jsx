@@ -8,26 +8,26 @@ const Pricing = () => {
   const pricingOptions = [
     {
       id: 1,
-      name: 'Basic Plan',
-      originalPrice: '$25 / mes',
-      discountPrice: '$20 / mes',
-      features: ['Acceso a piscina', 'Clases grupales', 'Vestuario y duchas'],
+      name: 'Plan Relax',
+      originalPrice: '$150 / noche',
+      discountPrice: '$120 / noche',
+      features: ['Acceso a piscina', 'Desayuno incluido', 'WiFi gratuito'],
       icon: faSwimmingPool,
     },
     {
       id: 2,
-      name: 'Premium Plan',
-      originalPrice: '$45 / mes',
-      discountPrice: '$35 / mes',
-      features: ['Acceso a piscina y gimnasio', 'Clases grupales', 'Entrenamiento personal', 'Sauna y spa'],
+      name: 'Plan Confort',
+      originalPrice: '$200 / noche',
+      discountPrice: '$170 / noche',
+      features: ['Acceso a piscina y gimnasio', 'Desayuno y cena incluidos', 'WiFi y estacionamiento gratuito', 'Sauna y spa'],
       icon: faDumbbell,
     },
     {
       id: 3,
-      name: 'Elite Plan',
-      originalPrice: '$60 / mes',
-      discountPrice: '$50 / mes',
-      features: ['Acceso ilimitado', 'Entrenamiento personal', 'Clases exclusivas', 'Spa y masajes'],
+      name: 'Plan Lujo',
+      originalPrice: '$300 / noche',
+      discountPrice: '$250 / noche',
+      features: ['Suite de lujo', 'Servicio de habitación 24h', 'Acceso a spa y masajes', 'Desayuno, almuerzo y cena incluidos'],
       icon: faSpa,
     },
   ];
@@ -41,16 +41,13 @@ const Pricing = () => {
       <div className="container mx-auto px-4 text-center">
         <motion.h2
           ref={refTitle}
-          className="text-4xl md:text-5xl font-bold mb-8 relative inline-block"
+          className="text-4xl md:text-5xl font-bold mb-8 text-[#c49c7c]"
           initial={{ opacity: 0, y: -50 }}
           animate={inViewTitle ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1 }}
         >
-          Planes y Precios
+          Planes y Tarifas
           {/* Subrayado con olas */}
-          <div className="absolute left-0 bottom-0 w-full h-2">
-            <div className="wave" style={{ animation: 'wave 6s linear infinite' }}></div>
-          </div>
         </motion.h2>
 
         <motion.div
@@ -69,13 +66,13 @@ const Pricing = () => {
               transition={{ duration: 0.5, delay: 0.2 * option.id }}
             >
               <div className="flex justify-center mb-4">
-                <FontAwesomeIcon icon={option.icon} className="text-6xl text-blue-500" />
+                <FontAwesomeIcon icon={option.icon} className="text-6xl text-[#c49c7c]" />
               </div>
-              <h3 className="text-2xl font-semibold mb-2">{option.name}</h3>
+              <h3 className="text-2xl font-semibold mb-2 text-gray-800">{option.name}</h3>
               
-              <p className="text-gray-500 font-medium mb-4">
+              <p className="text-gray-600 font-medium mb-4">
                 <span className="line-through text-red-500">{option.originalPrice}</span> 
-                <span className="text-green-600 font-bold ml-2">{option.discountPrice}</span>
+                <span className="text-[#c49c7c] font-bold ml-2">{option.discountPrice}</span>
               </p>
               
               <ul className="text-gray-600 mb-4">
@@ -85,8 +82,8 @@ const Pricing = () => {
                   </li>
                 ))}
               </ul>
-              <a href="#contact" className='bg-blue-500 hover:bg-orange-500 text-white font-semibold py-2 px-4 rounded transition-colors duration-300'>
-                Elegir Plan
+              <a href="#contact" className="bg-[#c49c7c] hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded transition-colors duration-300">
+                Reservar Plan
               </a>
             </motion.div>
           ))}

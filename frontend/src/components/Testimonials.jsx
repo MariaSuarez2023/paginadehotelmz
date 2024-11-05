@@ -8,24 +8,24 @@ const Testimonials = () => {
   const testimonials = [
     {
       id: 1,
-      name: 'Carlos Méndez',
-      role: 'Empresario',
+      name: 'Ana Rodríguez',
+      role: 'Empresaria',
       icon: faUserTie,
-      text: 'Aguagym me ha ayudado a mantener un estilo de vida saludable. Los entrenadores son excelentes y las instalaciones son de primera clase. ¡Recomendaría Aguagym a todos!',
+      text: 'HotelMZ es sin duda mi lugar favorito para escapar de la rutina. Las habitaciones son impecables y el servicio es de primera clase. ¡Volveré pronto!',
     },
     {
       id: 2,
-      name: 'Laura González',
-      role: 'Estudiante',
+      name: 'Javier López',
+      role: 'Turista',
       icon: faUserGraduate,
-      text: 'Las clases de natación en Aguagym son increíbles. He mejorado muchísimo desde que empecé. Además, el ambiente es muy acogedor y siempre me siento bienvenida.',
+      text: 'La experiencia en HotelMZ fue increíble. Las instalaciones son maravillosas y el personal siempre estuvo dispuesto a ayudarme en todo momento.',
     },
     {
       id: 3,
-      name: 'Dr. Martín Pérez',
-      role: 'Médico',
+      name: 'Dr. María González',
+      role: 'Doctora',
       icon: faUserMd,
-      text: 'El enfoque en la salud y el bienestar que tienen en Aguagym es impresionante. Recomiendo las clases de aquafitness para cualquier persona que busque una forma divertida y efectiva de ejercitarse.',
+      text: 'Me encantó mi estancia en HotelMZ. Es un lugar perfecto para relajarse y desconectar. Definitivamente, recomiendo este hotel a mis colegas.',
     },
   ];
 
@@ -34,16 +34,16 @@ const Testimonials = () => {
   const [refCards, inViewCards] = useInView({ triggerOnce: true, threshold: 0.2 });
 
   return (
-    <section id="testimonials" className="py-16 bg-[#720A6A] text-white">
+    <section id="testimonials" className="py-16 bg-white text-gray-800">
       <div className="container mx-auto px-4 text-center">
         <motion.h2
           ref={refTitle}
-          className="text-4xl md:text-5xl font-bold mb-8 relative"
+          className="text-4xl md:text-5xl font-bold mb-8 text-[#c49c7c]"
           initial={{ opacity: 0, y: -50 }}
           animate={inViewTitle ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1 }}
         >
-          Testimonios
+          Opiniones de Nuestros Huéspedes
         </motion.h2>
 
         <motion.div
@@ -56,17 +56,17 @@ const Testimonials = () => {
           {testimonials.map((testimonial) => (
             <motion.div
               key={testimonial.id}
-              className="bg-[#A81454] p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+              className="bg-[#f3e9e4] p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={inViewCards ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.5, delay: 0.2 * testimonial.id }}
             >
               <div className="flex justify-center mb-4">
-                <FontAwesomeIcon icon={testimonial.icon} className="text-6xl text-[#edf2f4]" />
+                <FontAwesomeIcon icon={testimonial.icon} className="text-6xl text-[#c49c7c]" />
               </div>
-              <h3 className="text-2xl font-semibold mb-2">{testimonial.name}</h3>
-              <p className="text-[#a2d2ff] font-medium mb-4">{testimonial.role}</p>
-              <p className="text-gray-100">{testimonial.text}</p>
+              <h3 className="text-2xl font-semibold mb-2 text-gray-800">{testimonial.name}</h3>
+              <p className="text-[#c49c7c] font-medium mb-4">{testimonial.role}</p>
+              <p className="text-gray-700">{testimonial.text}</p>
             </motion.div>
           ))}
         </motion.div>

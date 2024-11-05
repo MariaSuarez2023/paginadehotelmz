@@ -17,7 +17,7 @@ const ContactForm = () => {
     state: '',
     city: '',
     postalCode: '',
-    membership: 'Basic Plan',
+    membership: 'Plan Relax',
     message: '',
   });
 
@@ -59,7 +59,7 @@ const ContactForm = () => {
         state: '',
         city: '',
         postalCode: '',
-        membership: 'Basic Plan',
+        membership: 'Plan Relax',
         message: '',
       });
     } catch (error) {
@@ -73,30 +73,30 @@ const ContactForm = () => {
   const [refContact, inViewContact] = useInView({ triggerOnce: true, threshold: 0.2 });
 
   return (
-    <section id="contact" className="py-16 bg-[#EF792B] text-gray-800">
+    <section id="contact" className="py-16 bg-gray-100 text-gray-800">
       <div className="container mx-auto px-4">
         <motion.h2
           ref={refTitle}
-          className="text-4xl font-bold text-center text-white mb-8"
+          className="text-4xl font-bold text-center text-[#c49c7c] mb-4"
           initial={{ opacity: 0, y: -50 }}
           animate={inViewTitle ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1 }}
         >
-          Formulario de Contacto
+          Contáctenos
         </motion.h2>
         <motion.p
           ref={refTitle}
-          className="text-xl font-bold text-center text-white mb-8"
+          className="text-xl text-center text-gray-700 mb-8"
           initial={{ opacity: 0, y: 50 }}
           animate={inViewTitle ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1, delay: 0.3 }}
         >
-          Adquiere una membresía ahora mismo
+          Estamos aquí para ayudarle a planificar su estancia perfecta
         </motion.p>
         <motion.form
           ref={refForm}
           onSubmit={handleSubmit}
-          className="bg-white p-8 rounded-lg shadow-lg max-w-lg mx-auto"
+          className="bg-white p-8 rounded-lg shadow-lg max-w-lg mx-auto border border-[#c49c7c]"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={inViewForm ? { opacity: 1, scale: 1 } : {}}
           transition={{ duration: 0.5 }}
@@ -163,9 +163,9 @@ const ContactForm = () => {
           <div className="mb-4">
             <label htmlFor="membership" className="block text-sm font-medium text-gray-700">Membresía</label>
             <select id="membership" name="membership" value={formData.membership} onChange={handleChange} required className="mt-1 p-2 w-full border border-gray-300 rounded-md">
-              <option value="Basic Plan">Basic Plan</option>
-              <option value="Premium Plan">Premium Plan</option>
-              <option value="Elite Plan">Elite Plan</option>
+              <option value="Plan Relax">Plan Relax</option>
+              <option value="Plan Confort">Plan Confort</option>
+              <option value="Plan Lujo">Plan Lujo</option>
             </select>
           </div>
           <div className="mb-4">
@@ -174,7 +174,7 @@ const ContactForm = () => {
           </div>
           <motion.button 
             type="submit" 
-            className="bg-blue-500 hover:bg-orange-500 text-white font-semibold py-2 px-4 rounded transition-colors duration-300 w-full"
+            className="bg-[#c49c7c] hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded transition-colors duration-300 w-full"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.5 }}
@@ -191,22 +191,22 @@ const ContactForm = () => {
           animate={inViewContact ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1, delay: 0.5 }}
         >
-          <h3 className="text-3xl font-bold text-white mb-8">Ponte en Contacto</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-white">
-            <div className="bg-blue-500 p-6 rounded-lg shadow-lg text-center">
-              <FontAwesomeIcon icon={faMapMarkerAlt} className="text-4xl mb-4" />
+          <h3 className="text-3xl font-bold text-[#c49c7c] mb-8">Ponte en Contacto</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-gray-800">
+            <div className="p-6 rounded-lg shadow-lg text-center border border-[#c49c7c]">
+              <FontAwesomeIcon icon={faMapMarkerAlt} className="text-4xl text-[#c49c7c] mb-4" />
               <h4 className="text-2xl font-semibold mb-2">Ubicación</h4>
-              <p>Aguagym, Calle Principal, Ciudad Valera, Estado Trujillo</p>
+              <p>HotelMZ, Calle Principal, Ciudad de Destino</p>
             </div>
-            <div className="bg-blue-500 p-6 rounded-lg shadow-lg text-center">
-              <FontAwesomeIcon icon={faEnvelope} className="text-4xl mb-4" />
+            <div className="p-6 rounded-lg shadow-lg text-center border border-[#c49c7c]">
+              <FontAwesomeIcon icon={faEnvelope} className="text-4xl text-[#c49c7c] mb-4" />
               <h4 className="text-2xl font-semibold mb-2">Correo Electrónico</h4>
-              <p>contacto@aguagym.com</p>
+              <p>contacto@hotelMz.com</p>
             </div>
-            <div className="bg-blue-500 p-6 rounded-lg shadow-lg text-center">
-              <FontAwesomeIcon icon={faPhoneAlt} className="text-4xl mb-4" />
+            <div className="p-6 rounded-lg shadow-lg text-center border border-[#c49c7c]">
+              <FontAwesomeIcon icon={faPhoneAlt} className="text-4xl text-[#c49c7c] mb-4" />
               <h4 className="text-2xl font-semibold mb-2">Teléfono</h4>
-              <p>+58 424 123 4567</p>
+              <p>+1 234 567 890</p>
             </div>
           </div>
         </motion.div>

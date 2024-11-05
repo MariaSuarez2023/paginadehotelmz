@@ -1,38 +1,38 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSwimmingPool, faLifeRing, faWater, faSwimmer } from '@fortawesome/free-solid-svg-icons';
+import { faMapMarkedAlt, faHiking, faBed, faWallet } from '@fortawesome/free-solid-svg-icons';
 import { useInView } from 'react-intersection-observer';
 
 const Blog = () => {
   const blogs = [
     {
       id: 1,
-      title: 'Beneficios de la Natación para la Salud',
-      description: 'Descubre cómo la natación puede mejorar tu salud física y mental.',
-      icon: faSwimmingPool,
-      link: 'https://popularenlinea.com/Personas/blog/Pages/Cuales-son-los-beneficios-de-la-natacion.aspx#:~:text=Al%20nadar%2C%20consumes%20hasta%20un,aumento%20en%20la%20resistencia%20cardiorrespiratoria.',
+      title: 'Rutas de mochilero en Latinoamérica que superan a Europa',
+      description: 'Descubre rutas de mochilero en Latinoamérica que ofrecen experiencias únicas y superan a las de Europa.',
+      icon: faMapMarkedAlt,
+      link: 'https://culturacolectiva.com/estilo-de-vida/viajes/rutas-de-mochileros-en-latinoamerica-que-son-mejores-que-en-europa/',
     },
     {
       id: 2,
-      title: 'Curiosidades sobre la Natación en los Juegos Olímpicos',
-      description: 'Explora datos interesantes sobre la natación olímpica.',
-      icon: faLifeRing,
-      link: 'https://www.olympic.org/swimming',
+      title: 'Consejos para viajar con un presupuesto limitado',
+      description: 'Aprende estrategias para viajar por el mundo sin gastar una fortuna.',
+      icon: faHiking,
+      link: 'https://thegreenvoyage.com/es/trucos-para-viajes-econ%C3%B3micos/',
     },
     {
       id: 3,
-      title: 'Consejos para Mejorar tu Técnica de Natación',
-      description: 'Aprende cómo puedes mejorar tu estilo y rendimiento en el agua.',
-      icon: faWater,
-      link: 'https://triatlon.org/blog/tecnica-de-natacion-aspectos-mejorar-tiempos-agua/',
+      title: 'Los 10 mejores destinos mochileros de Sudamérica',
+      description: 'Explora los destinos más populares entre mochileros en Sudamérica.',
+      icon: faBed,
+      link: 'https://elmundoenlamochila.com/10-mejores-destinos-mochileros-sudamerica/',
     },
     {
       id: 4,
-      title: 'Los Mejores Lugares para Practicar Natación en el Mundo',
-      description: 'Conoce los lugares más impresionantes para nadar alrededor del mundo.',
-      icon: faSwimmer,
-      link: 'https://www.orca.com/es-int/blog/top-10-best-places-to-swim-openwater-swimming?srsltid=AfmBOorGQzCf2imM7HXTD9n8GVHAXQZ4Rzulmq1XnHpTbHbt5OZgKdNx',
+      title: 'Cómo viajar con poco dinero: 10 tips para lograrlo',
+      description: 'Descubre consejos prácticos para viajar con un presupuesto ajustado.',
+      icon: faWallet,
+      link: 'https://experienciajoven.com/como-viajar-con-poco-dinero/',
     },
   ];
 
@@ -45,15 +45,12 @@ const Blog = () => {
       <div className="container mx-auto px-4 text-center">
         <motion.h2
           ref={refTitle}
-          className="text-4xl md:text-5xl font-bold mb-8 relative inline-block"
+          className="text-4xl md:text-5xl font-bold mb-8 relative inline-block text-[#c49c7c]"
           initial={{ opacity: 0, y: -50 }}
           animate={inViewTitle ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1 }}
         >
-          Blog
-          <div className="absolute left-0 bottom-0 w-full h-2">
-            <div className="wave" style={{ animation: 'wave 2s linear infinite' }}></div>
-          </div>
+          Nuestro Blog
         </motion.h2>
 
         <motion.div
@@ -72,15 +69,15 @@ const Blog = () => {
               transition={{ duration: 0.5, delay: 0.2 * blog.id }}
             >
               <div className="flex justify-center mb-4">
-                <FontAwesomeIcon icon={blog.icon} className="text-6xl text-[#720A6A]" />
+                <FontAwesomeIcon icon={blog.icon} className="text-6xl text-[#c49c7c]" />
               </div>
-              <h3 className="text-2xl font-semibold mb-4">{blog.title}</h3>
+              <h3 className="text-2xl font-semibold mb-4 text-gray-800">{blog.title}</h3>
               <p className="text-gray-600 mb-4">{blog.description}</p>
               <a
                 href={blog.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block mt-4 bg-[#EF792B] hover:bg-[#D13449] text-white font-semibold py-2 px-4 rounded transition-colors duration-300"
+                className="inline-block mt-4 bg-[#c49c7c] hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded transition-colors duration-300"
               >
                 Leer más
               </a>

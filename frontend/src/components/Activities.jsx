@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSwimmer, faRunning, faBiking } from '@fortawesome/free-solid-svg-icons';
+import { faConciergeBell, faGlassMartiniAlt, faUmbrellaBeach } from '@fortawesome/free-solid-svg-icons';
 import { useInView } from 'react-intersection-observer';
 
 const API_KEY = '31ea8bf1ae5ca7854e8e6bc99187b9fd'; 
@@ -12,27 +12,27 @@ const Activities = () => {
   const [activities] = useState([
     {
       id: 1,
-      name: 'Baño matinal',
-      description: 'Comience el día con un baño energizante.',
-      date: '2024-08-25',
-      icon: faSwimmer,
-      location: 'Country Club, Ciudad Valera, Estado Trujillo.',
+      name: 'Bienvenida con Cóctel',
+      description: 'Disfrute de un cóctel de bienvenida al iniciar su estancia.',
+      date: '2024-11-05',
+      icon: faGlassMartiniAlt,
+      location: 'Lobby del HotelMZ',
     },
     {
       id: 2,
-      name: 'Aeróbic acuático',
-      description: 'Participe en nuestra enérgica sesión de aeróbic acuático.',
-      date: '2024-08-26',
-      icon: faRunning,
-      location: 'El Italven, Ciudad Valera, Estado Trujillo.',
+      name: 'Tarde en la Piscina',
+      description: 'Relájese y disfrute de una tarde junto a nuestra piscina.',
+      date: '2024-11-06',
+      icon: faUmbrellaBeach,
+      location: 'Área de la Piscina, HotelMZ',
     },
     {
       id: 3,
-      name: 'Clase de ciclismo',
-      description: 'Experimente la emoción de nuestra clase de ciclismo indoor.',
-      date: '2024-08-27',
-      icon: faBiking,
-      location: 'Parque los ilustres, Ciudad Valera, Estado Trujillo.',
+      name: 'Cena Exclusiva',
+      description: 'Disfrute de una cena exclusiva preparada por nuestro chef.',
+      date: '2024-11-07',
+      icon: faConciergeBell,
+      location: 'Restaurante Principal, HotelMZ',
     },
   ]);
 
@@ -68,7 +68,7 @@ const Activities = () => {
   const [refCards, inViewCards] = useInView({ triggerOnce: true, threshold: 0.2 });
 
   return (
-    <section id="activities" className="py-16 bg-gray-100 text-gray-800">
+    <section id="activities" className="py-16 bg-[#c49c7c] text-white">
       <div className="container mx-auto px-4 text-center">
         <motion.h2
           ref={refTitle}
@@ -77,21 +77,17 @@ const Activities = () => {
           animate={inViewTitle ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1 }}
         >
-          Próximas Actividades
-          <div className="absolute left-0 bottom-0 w-full h-2">
-            <div className="wave" style={{ animation: 'wave 6s linear infinite' }}></div>
-          </div>
+          Actividades Exclusivas
         </motion.h2>
 
         <motion.p
           ref={refSubtitle}
-          className="text-lg md:text-xl mb-12"
+          className="text-lg md:text-xl mb-12 text-white"
           initial={{ opacity: 0, y: 50 }}
           animate={inViewSubtitle ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1, delay: 0.3 }}
         >
-          Únete a nuestras emocionantes actividades y aprovecha al máximo tu tiempo en Aguagym.
-          Mantente actualizado con el pronóstico del clima para cada evento.
+          Sumérjase en una variedad de actividades diseñadas para hacer su estancia inolvidable. Disfrute de cada momento en HotelMZ.
         </motion.p>
 
         <motion.div
@@ -107,13 +103,13 @@ const Activities = () => {
             return (
               <motion.div
                 key={activity.id}
-                className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+                className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 text-gray-800"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={inViewCards ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.5, delay: 0.2 * activity.id }}
               >
                 <div className="flex justify-center mb-4">
-                  <FontAwesomeIcon icon={activity.icon} className="text-4xl text-blue-500" />
+                  <FontAwesomeIcon icon={activity.icon} className="text-4xl text-[#c49c7c]" />
                 </div>
                 <h3 className="text-2xl font-semibold mb-4">{activity.name}</h3>
                 <p className="text-gray-600 mb-4">{activity.description}</p>
