@@ -1,6 +1,7 @@
 const Room = require('../models/Room');
 const Review = require('../models/Review');
 const { validationResult } = require('express-validator');
+const path = require('path');
 
 // Crear una nueva habitación
 exports.createRoom = async (req, res) => {
@@ -38,8 +39,8 @@ exports.getRooms = async (req, res) => {
     const roomsWithImageUrls = rooms.map(room => ({
       ...room.toObject(),
       imageUrl: room.images && room.images.length > 0 
-                ? `/uploads/${room.images[room.mainImageIndex || 0]}` // Obtener la imagen de portada
-                : null // Imagen por defecto o null si no hay imágenes
+                ? `${req.protocol}://${req.get('host')}/uploads/${path.basename(room.images[room.mainImageIndex || 0])}`
+                : null
     }));
     res.json(roomsWithImageUrls);
   } catch (error) {
@@ -58,7 +59,7 @@ exports.getRoomById = async (req, res) => {
     const roomWithImageUrl = {
       ...room.toObject(),
       imageUrl: room.images && room.images.length > 0 
-                ? `/uploads/${room.images[room.mainImageIndex || 0]}` // Imagen de portada
+                ? `${req.protocol}://${req.get('host')}/uploads/${path.basename(room.images[room.mainImageIndex || 0])}`
                 : null
     };
     res.json(roomWithImageUrl);
@@ -119,14 +120,14 @@ exports.deleteRoom = async (req, res) => {
   }
 };
 
-// Añadir una reseña a una habitación
+// Añadir una reseña a una habitación (sin autenticación)
 exports.addReview = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
 
-  const { rating, comment } = req.body;
+  const { firstName, lastName, rating, comment } = req.body;
 
   try {
     const room = await Room.findById(req.params.roomId);
@@ -134,13 +135,19 @@ exports.addReview = async (req, res) => {
       return res.status(404).json({ msg: 'Habitación no encontrada' });
     }
 
-    const review = new Review({
-      user: req.user.id, // Este ID viene del token JWT del usuario autenticado
+    const reviewData = {
       room: req.params.roomId,
       rating,
-      comment
-    });
+      comment,
+      firstName: firstName || "Anónimo",
+      lastName: lastName || ""
+    };
 
+    if (req.user) {
+      reviewData.user = req.user.id; // Asigna el ID del usuario autenticado si está presente
+    }
+
+    const review = new Review(reviewData);
     await review.save();
 
     // Añadir la reseña a la habitación y guardar

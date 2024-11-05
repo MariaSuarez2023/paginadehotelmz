@@ -57,9 +57,9 @@ const RoomsList = () => {
           <li key={room._id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
             <Link to={`/rooms/${room._id}`}>
               <div className="relative">
-                {/* Renderizar la imagen de portada usando room.imageUrl */}
+                {/* Renderizar la imagen de portada usando room.imageUrl con fallback */}
                 <img 
-                  src={`http://localhost:5000/${room.imageUrl}`} 
+                  src={room.imageUrl || '/path/to/default-image.jpg'} 
                   alt={room.title} 
                   className="w-full h-48 object-cover" 
                 />

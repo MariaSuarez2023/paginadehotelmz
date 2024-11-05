@@ -4,7 +4,17 @@ const reviewSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
-    required: true
+    required: false // Opcional para usuarios no autenticados
+  },
+  firstName: {
+    type: String,
+    trim: true,
+    required: function() { return !this.user; } // Requerido solo si no hay usuario autenticado
+  },
+  lastName: {
+    type: String,
+    trim: true,
+    required: function() { return !this.user; } // Requerido solo si no hay usuario autenticado
   },
   room: {
     type: mongoose.Schema.Types.ObjectId,
@@ -19,7 +29,8 @@ const reviewSchema = new mongoose.Schema({
   },
   comment: {
     type: String,
-    trim: true
+    trim: true,
+    required: true
   },
   createdAt: {
     type: Date,

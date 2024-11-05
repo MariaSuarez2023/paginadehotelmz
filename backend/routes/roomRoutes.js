@@ -52,11 +52,10 @@ router.put(
 // Ruta para eliminar una habitación (solo administrador)
 router.delete('/:id', authenticateUser, authorizeAdmin, deleteRoom);
 
-// Ruta para añadir una reseña a una habitación (usuario autenticado)
+// Ruta para añadir una reseña a una habitación (pública)
 router.post(
   '/:roomId/reviews',
   [
-    authenticateUser,
     check('rating', 'La calificación es obligatoria y debe estar entre 1 y 5').isInt({ min: 1, max: 5 }),
     check('comment', 'El comentario es obligatorio').not().isEmpty()
   ],
